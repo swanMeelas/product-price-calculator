@@ -42,36 +42,6 @@ public class ProductPriceService {
         }
     }
 
-   /* public Map<Integer, Double> priceRangeList(String price, Integer units) {
-        int qty = 50;
-        double cartonPrice = Double.parseDouble(price);
-        double unitPrice = cartonPrice / 20;
-        int noOfCartons = qty / units;
-        Map<Integer, Double> priceRange = new HashMap<>();
-        int count = 0;
-        for (int x = 0; x <= noOfCartons; x++) {
-            for (int n = 0; n < units; n++) {
-                priceRange.put(count++, x * cartonPrice + n * unitPrice * 1.3);
-                if (count == 51) {
-                    break;
-                }
-            }
-
-        }
-        return priceRange;
-    }*/
-
-
-
-    /*public Map<Integer, Double> findPrice(Integer id) {
-        Optional<Product> product = productRepository.findById(id);
-        if (product.isPresent()) {
-            Product product1 = product.get();
-            return findPrice(product1.getUnits(), product1.getCartonPrice().toString(), 50, new HashMap<>());
-        }
-        return new HashMap<>();
-    }*/
-
     public List<Price> ListPriceRange(Integer id) {
         Product product = getProduct(id);
         if (product != null) {
@@ -104,14 +74,6 @@ public class ProductPriceService {
         return priceList;
     }
 
-    /*public Map<Integer, Double> findPrice(Integer units, String price, Integer quantity, Map<Integer, Double> map) {
-        if (quantity > 0) {
-            double productPrice = getProductPrice(units, price, quantity);
-            map.put(quantity, productPrice);
-            return findPrice(units, price, quantity - 1, map);
-        }
-        return map;
-    }*/
 
     private double getProductPrice(Integer units, Double cartonPrice, Integer quantity) {
         double unitPrice = cartonPrice / 20;
@@ -141,19 +103,4 @@ public class ProductPriceService {
         }
         return new OptimizedPriceDetails();
     }
-
-    /*  public double calculatePrice(String name, Integer units, String price, Integer quantity) {
-     *//*      double cartonPrice = Double.parseDouble(price);
-        double unitPrice = cartonPrice / 20;
-        int noOfCartons = quantity / units;
-        int remainingCartons = quantity % units;
-
-        Double optimized_price = noOfCartons * cartonPrice + remainingCartons * unitPrice * 1.3;*//*
-        double optimized_price = getProductPrice(units, price, quantity);
-        int noOfCartons = quantity / units;
-        if (noOfCartons >= 3) {
-            optimized_price = optimized_price - (optimized_price * 0.1);
-        }
-        return optimized_price;
-    }*/
 }

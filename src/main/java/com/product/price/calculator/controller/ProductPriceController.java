@@ -34,16 +34,6 @@ public class ProductPriceController {
 
     }
 
-    /*@GetMapping(value = "/listPriceRange")
-    Map<Integer,Double> listPriceRange(@RequestParam String cartonPrice, Integer units, String name) {
-        return productPriceService.priceRangeList(cartonPrice,units);
-    }*/
-
-   /* @GetMapping(value = "/calculatePrice")
-    Double calculatePrice(@RequestParam String name, String cartonPrice, Integer units, Integer quantity) {
-        return productPriceService.calculatePrice(name,units,cartonPrice,quantity);
-    }*/
-
     @PostMapping(value = "/price")
     ResponseEntity<OptimizedPriceDetails> calculatePrice(@RequestBody Price price) {
         OptimizedPriceDetails optimizedPriceDetails = productPriceService.calculatePrice(price);
