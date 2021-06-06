@@ -21,12 +21,23 @@ public class ProductPriceController {
         this.productPriceService = productPriceService;
     }
 
+    /**
+     * retrieve all products from DB
+     *
+     * @return list of products
+     */
     @GetMapping
     ResponseEntity<List<Product>> getAllProducts() {
         List<Product> productList = productPriceService.findAllProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
+    /**
+     * save product details in DB
+     *
+     * @param product product object
+     * @return saved product
+     */
     @PostMapping
     ResponseEntity<Product> saveProduct(@RequestBody Product product) {
         Product savedProduct = productPriceService.saveProduct(product);
@@ -34,12 +45,24 @@ public class ProductPriceController {
 
     }
 
+    /**
+     * Calculate total price and apply discount if required for given number of quantities of product
+     *
+     * @param price productID and quantity
+     * @return price details
+     */
     @PostMapping(value = "/price")
     ResponseEntity<OptimizedPriceDetails> calculatePrice(@RequestBody Price price) {
         OptimizedPriceDetails optimizedPriceDetails = productPriceService.calculatePrice(price);
         return new ResponseEntity<>(optimizedPriceDetails, HttpStatus.OK);
     }
 
+    /**
+     * retrieve all price ranges from 1-50 units for a product
+     *
+     * @param id product id
+     * @return list of prices range for a particular product
+     */
     @GetMapping(value = "/price/{id}")
     ResponseEntity<List<Price>> findPrice(@PathVariable Integer id) {
         List<Price> priceList = productPriceService.ListPriceRange(id);
