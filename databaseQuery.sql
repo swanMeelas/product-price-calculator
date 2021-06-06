@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `unitsPerCarton` varchar(45) DEFAULT NULL,
+  `units` int DEFAULT NULL,
   `cartonPrice` double DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
